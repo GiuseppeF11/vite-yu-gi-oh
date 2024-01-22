@@ -1,8 +1,8 @@
 <script>
 import AppHeader from './components/AppHeader.vue';
 import AppMain from './components/AppMain.vue';
-import AppFooter from './components/AppFooter.vue';
-import Cards from './components/Cards.vue'
+import LoadingPage from './components/LoadingPage.vue';
+import Card from './components/Card.vue'
 import {store} from './store'
 import axios from 'axios';
 
@@ -15,12 +15,14 @@ export default {
     components: {
         AppHeader,
         AppMain,
-        AppFooter,
-        Cards,
+        LoadingPage,
+        Card,
     },  
-    methods: {
 
+    methods: {
+        
     },
+
     created() {
         axios
             .get('https://db.ygoprodeck.com/api/v7/cardinfo.php?num=15&offset=0')
@@ -36,6 +38,7 @@ export default {
     <body>
         <AppHeader />
         <AppMain />
+        <LoadingPage/>
     </body>    
 </template>
 
@@ -46,4 +49,5 @@ export default {
 body {
     background-color: #D48F38;
 }
+
 </style>

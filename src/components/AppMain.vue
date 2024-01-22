@@ -1,6 +1,6 @@
 <script>
 import {store} from '../store'
-import Cards from './Cards.vue'
+import Card from './Card.vue'
 
 export default {
     data() {
@@ -14,7 +14,7 @@ export default {
     },
 
     components: {
-        Cards
+        Card
     },
 }
 </script>
@@ -40,7 +40,7 @@ export default {
         </header>
         <div>
             <div class="row cards-container h-100 row-cols-6 ">
-                <Cards v-for="(elem, i) in store.cards" :key="i" :card="elem"/>
+                <Card v-for="(elem, i) in store.cards" :key="i" :card="elem"/>
             </div>
         </div>
     </main>
