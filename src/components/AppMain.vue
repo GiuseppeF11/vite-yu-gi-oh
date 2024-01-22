@@ -1,13 +1,21 @@
 <script>
+import {store} from '../store'
+import Cards from './Cards.vue'
+
 export default {
     data() {
         return {
-
+            store
         };
     },
+
     methods: {
 
-    }
+    },
+
+    components: {
+        Cards
+    },
 }
 </script>
 
@@ -28,19 +36,11 @@ export default {
         </div>
     <main class="container p-5">
         <header class="row bg-dark text-light fw-bold  p-3">
-            Found 39 Cards
+            Found {{store.cards.length}} Cards
         </header>
         <div>
             <div class="row cards-container h-100 row-cols-6 ">
-                <div class="col card">
-                    <div class="img-box">
-                        <img src="https://www.cardtrader.com/uploads/blueprints/image/81905/show_blue-eyes-white-dragon-legendary-decks-ii-81905.png" alt="">
-                    </div>
-                    <div class="p-2">
-                        <h5 class="name-monster text-center text-light">Alien Brain</h5>
-                        <h6 class="type-monster text-center">Alien</h6>
-                    </div>
-                </div>
+                <Cards v-for="(elem, i) in store.cards" :key="i" :card="elem"/>
             </div>
         </div>
     </main>
@@ -63,14 +63,6 @@ export default {
     .cards-container {
         display: flex;
         justify-content: center;
-
-        .col {
-            margin: 0 10px 15px;
-        }
-        .card {
-            padding: 0;
-            background-color: #D48F38;
-        }
     }
 }
 </style>
