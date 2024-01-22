@@ -29,16 +29,18 @@ export default {
 </script>
 
 <template>
-
-
-    <AppHeader />
-
-    <AppMain />
-
-    <AppFooter />
+    <body>
+        <AppHeader />
+        <AppMain />
+        <AppFooter />
+    </body>    
 </template>
 
 <style lang="scss">
 @use "assets/scss/main" as *;
 @import "assets/scss/partials/reset";
+
+body {
+    background-color: #D48F38;
+}
 </style>

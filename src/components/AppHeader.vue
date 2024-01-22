@@ -27,7 +27,7 @@ export default {
 <style lang="scss" scoped>
 .row {
     height: 10vh;
-
+    background-color: white;
 }
 
 
