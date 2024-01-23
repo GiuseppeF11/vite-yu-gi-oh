@@ -1,41 +1,43 @@
 <script>
-import {store} from '../store'
+import { resolveTransitionHooks } from 'vue';
+import {store} from '../store.js'
 import Card from './Card.vue'
+import Archetype from './Archetype.vue';
+import axios from 'axios';
 
 export default {
     data() {
         return {
-            store
+            store,
+            axios
         };
     },
 
     methods: {
-
+        
     },
 
     components: {
+        Archetype,
         Card
     },
 }
 </script>
 
 <template>
+    <form>
         <div class="row row-button d-flex  justify-content-start p-2">
-            <div class="col-auto ">
-                <div class="dropdown">
-                    <button class="btn border border-2 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Alien
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Uman</a></li>
-                        <li><a class="dropdown-item" href="#">Warrior</a></li>
-                        <li><a class="dropdown-item" href="#">Beast</a></li>
-                    </ul>
-                </div>
-            </div>
+            <div class="col-auto">
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>Select Menù</option>
+                    <Archetype v-for="(arc, i) in store.archetypes" :key="i" :archetype="arc"
+                    />
+                </select>
+            </div>  
         </div>
+    </form>
     <main class="container p-5">
-        <header class="row bg-dark text-light fw-bold  p-3">
+        <header class="row bg-dark text-light fw-bold  p-3 mb-3">
             Found {{store.cards.length}} Cards
         </header>
         <div>

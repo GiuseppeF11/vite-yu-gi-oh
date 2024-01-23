@@ -3,19 +3,22 @@ import AppHeader from './components/AppHeader.vue';
 import AppMain from './components/AppMain.vue';
 import LoadingPage from './components/LoadingPage.vue';
 import Card from './components/Card.vue'
-import {store} from './store'
+import Archetype from './components/Archetype.vue';
+import {store} from './store.js'
 import axios from 'axios';
 
 export default {
     data() {
         return {
-            store
+            store,
+            axios
         };
     },
     components: {
         AppHeader,
         AppMain,
         LoadingPage,
+        Archetype,
         Card,
     },  
 
@@ -25,10 +28,17 @@ export default {
 
     created() {
         axios
-            .get('https://db.ygoprodeck.com/api/v7/cardinfo.php?num=15&offset=0')
+            .get(this.store.baseUrl)
             .then((response) => {
-                console.log(response.data.data[0].card_images[0].image_url)
+                console.log(response.data)
                 this.store.cards = response.data.data
+            });
+            
+        axios
+            .get(this.store.arcUrl)
+            .then((response) => {
+                this.store.archetypes = response.data         
+                console.log(this.store.archetypes[1].archetype_name)      
             });
     }
 }

@@ -33,8 +33,10 @@ export default {
             margin: 0 10px 15px;
         }
         .card {
-            padding: 0;
+            border: 5px solid #464F64;
+            padding: 10px;
             background-color: #D48F38;
+            box-shadow: 10px 10px 20px #464F64;
 
             .text-box {
                 display: flex;
