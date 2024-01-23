@@ -26,6 +26,8 @@ export default {
 
 <style lang="scss" scoped>
 .row {
+    max-width: 100%;
+    margin: 0 auto;
     height: 10vh;
     background-color: white;
 }

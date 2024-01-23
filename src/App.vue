@@ -38,7 +38,7 @@ export default {
     <body>
         <AppHeader />
         <AppMain />
-        <LoadingPage/>
+        <!-- <LoadingPage/> -->
     </body>    
 </template>
 
