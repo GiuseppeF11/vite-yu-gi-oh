@@ -48,15 +48,14 @@ export default {
 <template>
         <div class="row row-button d-flex  justify-content-start p-2">
             <div class="col-auto">
-                {{ searchArch }}
                 <select class="form-select" aria-label="Default select example" v-model="store.searchArch" @change="$emit('ciao')" >
-                    <option selected>Select Menù</option>
+                    <option selected>Filter</option>
                     <Archetype v-for="(arc, i) in store.archetypes" :key="i" :archetype="arc"/>
                 </select>
             </div>  
         </div>
     <main class="container p-5">
-        <header class="row bg-dark text-light fw-bold  p-3 mb-3">
+        <header class="row bg-dark text-light fw-bold  p-3 mb-3 rounded-4 ">
             Found {{store.cards.length}} Cards
         </header>
         <div>
@@ -80,6 +79,7 @@ export default {
 .container {
     min-height: 50vh;
     background-color: white;
+    border-radius: 20px;
 
     .cards-container {
         display: flex;

@@ -11,7 +11,8 @@ export default {
     data() {
         return {
             store,
-            axios
+            axios,
+            loading: true,
         };
     },
     components: {
@@ -62,15 +63,19 @@ export default {
                 this.store.archetypes = response.data         
                 console.log(this.store.archetypes[1].archetype_name)      
             });
+
+        setTimeout(() => {
+            this.loading = false;
+        },3000)
     }
 }
 </script>
 
 <template>
     <body>
-        <AppHeader />
-        <AppMain @ciao="getApi" />
-        <!-- <LoadingPage/> -->
+        <LoadingPage v-if="loading"/>
+        <AppHeader v-if="loading==false" />
+        <AppMain @ciao="getApi" v-if="loading==false" />
     </body>    
 </template>
 

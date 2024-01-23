@@ -12,19 +12,22 @@ export default {
 </script>
 
 <template>
-    <div>
+    <div class="d-flex justify-content-center align-items-center container-loader">
         <div class="loader"></div>
     </div>
 </template>
 
 <style lang="scss" scoped>
+.container-loader{
+  height: 100vh;
+}
 .loader {
-  border: 16px solid #f3f3f3;
-  border-top: 16px solid #3498db;
+  border: 45px solid #f3f3f3;
+  border-top: 45px solid #626262;
   border-radius: 50%;
-  width: 120px;
-  height: 120px;
-  animation: spin 2s linear infinite;
+  width: 400px;
+  height: 400px;
+  animation: spin 1s linear infinite;
 }
 
 @keyframes spin {
