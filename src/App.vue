@@ -23,16 +23,38 @@ export default {
     },  
 
     methods: {
-        
-    },
 
-    created() {
-        axios
+        getApi () {
+
+            //Parte la richiesta senza filtro
+            if (this.store.searchArch == '')
+            axios
             .get(this.store.baseUrl)
             .then((response) => {
                 console.log(response.data)
                 this.store.cards = response.data.data
             });
+            
+            //Parte la richiesta con il filtro archetype
+            else {
+                axios
+                .get(this.store.baseUrl, {
+                    params: {
+                        archetype: this.store.searchArch,
+                    }
+                })
+                .then((response) => {
+                    console.log(response.data)
+                    this.store.cards = response.data.data
+                });
+            
+            }
+        }
+        
+    },
+
+    created() {
+        this.getApi()
             
         axios
             .get(this.store.arcUrl)
@@ -47,7 +69,7 @@ export default {
 <template>
     <body>
         <AppHeader />
-        <AppMain />
+        <AppMain @ciao="getApi" />
         <!-- <LoadingPage/> -->
     </body>    
 </template>

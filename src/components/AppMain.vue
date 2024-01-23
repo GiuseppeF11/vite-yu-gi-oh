@@ -9,11 +9,32 @@ export default {
     data() {
         return {
             store,
-            axios
+            axios,
         };
     },
 
     methods: {
+        searchingForArc () {
+           
+        },
+
+        getDataFromApi () {
+
+            let queryString = '';
+
+            if (this.searchArch.length > 0) {
+                queryString += 'status=' + this.searchArch;
+            }
+
+            const fullUrl = this.store.baseUrl + queryString;
+
+            axios
+                .get(this.store.baseUrl)
+                .then((response) => {
+                    console.log(response.data)
+                    this.store.cards = response.data.data
+                });
+        }
         
     },
 
@@ -25,17 +46,15 @@ export default {
 </script>
 
 <template>
-    <form>
         <div class="row row-button d-flex  justify-content-start p-2">
             <div class="col-auto">
-                <select class="form-select" aria-label="Default select example">
+                {{ searchArch }}
+                <select class="form-select" aria-label="Default select example" v-model="store.searchArch" @change="$emit('ciao')" >
                     <option selected>Select Menù</option>
-                    <Archetype v-for="(arc, i) in store.archetypes" :key="i" :archetype="arc"
-                    />
+                    <Archetype v-for="(arc, i) in store.archetypes" :key="i" :archetype="arc"/>
                 </select>
             </div>  
         </div>
-    </form>
     <main class="container p-5">
         <header class="row bg-dark text-light fw-bold  p-3 mb-3">
             Found {{store.cards.length}} Cards

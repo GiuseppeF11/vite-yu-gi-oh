@@ -17,7 +17,7 @@ export default {
 
 <template>
     <option 
-        value="0" >
+        :value="archetype.archetype_name" >
             {{ archetype.archetype_name}}
     </option>
 </template>
