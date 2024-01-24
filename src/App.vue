@@ -24,22 +24,24 @@ export default {
     },  
 
     methods: {
-
         getApi () {
 
             //Parte la richiesta senza filtro
-            if (this.store.searchArch == '')
-            axios
-            .get(this.store.baseUrl)
-            .then((response) => {
-                console.log(response.data)
-                this.store.cards = response.data.data
-            });
-            
+            if (this.store.searchArch == '') {
+                axios
+                .get(this.store.baseUrl)
+                .then((response) => {
+                    console.log(response.data)
+                    this.store.cards = response.data.data
+                })
+                .finally(() => { 
+                        this.loading = false
+                })
+            }
             //Parte la richiesta con il filtro archetype
             else {
                 axios
-                .get(this.store.baseUrl, {
+                .get(this.store.baseUrl, {  //All'interno della funzione get metto due parametri: il link (dove fare la richiesta) ; params ovvero il filtro di dati che mi interessa avere
                     params: {
                         archetype: this.store.searchArch,
                     }
@@ -47,7 +49,11 @@ export default {
                 .then((response) => {
                     console.log(response.data)
                     this.store.cards = response.data.data
-                });
+                })
+
+                .finally(() => { 
+                        this.loading = false
+                })
             
             }
         }
@@ -57,16 +63,14 @@ export default {
     created() {
         this.getApi()
             
-        axios
+          axios
             .get(this.store.arcUrl)
             .then((response) => {
                 this.store.archetypes = response.data         
-                console.log(this.store.archetypes[1].archetype_name)      
+                console.log(this.store.archetypes[1].archetype_name)
             });
 
-        setTimeout(() => {
-            this.loading = false;
-        },3000)
+        
     }
 }
 </script>
@@ -74,8 +78,8 @@ export default {
 <template>
     <body>
         <LoadingPage v-if="loading"/>
-        <AppHeader v-if="loading==false" />
-        <AppMain @ciao="getApi" v-if="loading==false" />
+        <AppHeader v-else />
+        <AppMain @prendoFunzioneDalFiglio="getApi" v-else />
     </body>    
 </template>
 

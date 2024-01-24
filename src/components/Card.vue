@@ -9,8 +9,9 @@ export default {
         
     },
 
+    //Per recuperare dati dal padre (AppMain) uso le props
     props: {
-        card: Object
+        card: Object //Il dato che prenderai dal padre (ovvero card) sarà un oggetto
     }
 }
 </script>

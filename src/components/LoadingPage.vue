@@ -22,11 +22,11 @@ export default {
   height: 100vh;
 }
 .loader {
-  border: 45px solid #f3f3f3;
-  border-top: 45px solid #626262;
+  border: 30px solid #f3f3f3;
+  border-top: 30px solid #626262;
   border-radius: 50%;
-  width: 400px;
-  height: 400px;
+  width: 200px;
+  height: 200px;
   animation: spin 1s linear infinite;
 }
 
